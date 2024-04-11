@@ -7,42 +7,43 @@ const rootResultados = ReactDOM.createRoot(document.getElementById('cuadrilla-re
 const rootCategorias = ReactDOM.createRoot(document.getElementById('cuadrilla-menus'));
 const cargaDisplay = document.getElementById('pantalla-carga');
 
+const urlRandom = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+const urlCategorias = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
 
-const datos = [];
-var categorias = null;
-// await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
-                    // .then(response => response.json())
+const datos = reordenarArrayRandom ( await recibeJSON(urlRandom, 9) );
+const categorias = await recibeJSON(urlCategorias, 1);
 
-async function fetchData() {
-  categorias = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
-                    .then(response => response.json())
-}
+async function recibeJSON(url, cantidad) {
+  const data = [];
 
-for (let index = 0; index < 9; index++) {
-  cargarJSON("https://www.thecocktaildb.com/api/json/v1/1/random.php", index);
-}
-
-function cargarJSON(url, index) {
-  fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('La solicitud no se pudo completar');
+  for (let index = 0; index < cantidad; index++) {
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const json = await response.json();
+        data.push(json);
       }
-      return response.json();
-    })
-    .then(data => {
-      datos[index] = data.drinks[0];
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+      else {
+        throw new Error('Error en fetch:', url)
+      }
+    } catch (error) {
+      console.error('Error:', error.message)
+    }    
+  }
+  return data;
+}
+
+function reordenarArrayRandom(array) {
+  const nuevoArray = [];
+  array.map( elemento => nuevoArray.push(elemento.drinks[0]))
+  return nuevoArray;
 }
 
 const intervalo = setInterval(() => {
   if (datos.length == 9) {
     cargaDisplay.style.display = 'none';
     clearInterval(intervalo);
-    console.log(datos);
+    console.log(categorias);
     rootResultados.render(
       <StrictMode>
         <Recetas recetas={datos} />
@@ -50,7 +51,7 @@ const intervalo = setInterval(() => {
     )
     rootCategorias.render(
       <StrictMode>
-        <Categorias props={categorias}/>
+        <Categorias props={categorias[0]}/>
       </StrictMode>
     )
   }
