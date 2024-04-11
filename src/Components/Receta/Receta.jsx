@@ -4,7 +4,7 @@ function Receta(props) {
   const prop = props.props;
   var key = prop.idDrink;
   var srcImg = prop.strDrinkThumb;
-  var link = './src/cocktailReceta.html?id='+key;
+  var link = '/src/cocktailReceta.html?id='+key;
   return (
     <StrictMode>
       <div className='trago' key={key}>

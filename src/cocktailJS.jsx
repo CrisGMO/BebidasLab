@@ -12,8 +12,6 @@ const urlCategorias = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=li
 
 var datos;
 var categorias;
-// = reordenarArrayRandom ( await recibeJSON(urlRandom, 9) );
-// const categorias = recibeJSON(urlCategorias, 1);
 
 recibeJSON(urlRandom, 9)
   .then(data => {
