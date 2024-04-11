@@ -10,8 +10,26 @@ const cargaDisplay = document.getElementById('pantalla-carga');
 const urlRandom = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 const urlCategorias = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
 
-const datos = reordenarArrayRandom ( await recibeJSON(urlRandom, 9) );
-const categorias = await recibeJSON(urlCategorias, 1);
+var datos;
+var categorias;
+// = reordenarArrayRandom ( await recibeJSON(urlRandom, 9) );
+// const categorias = recibeJSON(urlCategorias, 1);
+
+recibeJSON(urlRandom, 9)
+  .then(data => {
+    datos = reordenarArrayRandom(data);
+  })
+  .catch(error => {
+    console.error('Error al recibir JSON:', error);
+  });
+
+recibeJSON(urlCategorias, 1)
+  .then(data => {
+    categorias = data[0];
+  })
+  .catch(error =>{
+    console.error('Error al recibir JSON:', error);
+  })
 
 async function recibeJSON(url, cantidad) {
   const data = [];
@@ -51,7 +69,7 @@ const intervalo = setInterval(() => {
     )
     rootCategorias.render(
       <StrictMode>
-        <Categorias props={categorias[0]}/>
+        <Categorias props={categorias}/>
       </StrictMode>
     )
   }
