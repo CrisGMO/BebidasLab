@@ -9,8 +9,14 @@ const cargaDisplay = document.getElementById('pantalla-carga');
 
 
 const datos = [];
-const categorias = async (await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
-                    .then(response => response.json()) )
+var categorias = null;
+// await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+                    // .then(response => response.json())
+
+async function fetchData() {
+  categorias = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+                    .then(response => response.json())
+}
 
 for (let index = 0; index < 9; index++) {
   cargarJSON("https://www.thecocktaildb.com/api/json/v1/1/random.php", index);
