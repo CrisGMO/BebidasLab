@@ -1,0 +1,253 @@
+.cuerpo {
+    background-color: rgb(45, 32, 19);
+    display: grid;
+    grid-template-rows: 4fr;
+    padding: 0 10%;
+
+}
+
+.cuadrilla-titulo {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: fit-content;
+    background-color: rgba(35, 24, 13, 0.7);
+    grid-template-areas:
+    "titulo titulo titulo home buscar";
+
+
+    & h1 {
+        grid-area: titulo;
+        display: flex;
+        align-items: center;
+        color: rgb(255, 159, 51);
+        margin: -10% 0;
+        padding-left: 5%;
+        font-size: 4vw;
+        font-family: "Bungee Spice", sans-serif;
+        & img {
+            height: 70px;
+        }
+    }
+    /* boton de home */
+    & a {
+        margin: auto;
+        margin-right: 10px;
+        grid-area: home;
+        & button {
+            & img {
+                width: 2em;
+                height: 2em;
+                margin: auto;
+            }
+        }
+    }
+    & div {
+        display: flex;
+        align-items: center;
+        grid-area: buscar;
+        & input {
+            background-color: lightblue;
+            border-color: steelblue;
+            border-radius: 8px;
+            height: 2em;
+        }
+        & button {
+            border-radius: 8px;
+            & img {
+                width: 2em;
+                height: 2em;
+            };
+        }
+    }
+}
+
+hr {
+    width: 100%;
+}
+
+.cuadrilla-menus {
+    display: inline-block;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    & a {
+        color: white;
+        margin: 10px;
+        font-size: 20px;
+    }
+}
+
+.cuadrilla-random {
+    width: 100%;
+    color: white;
+    & h2 {
+        font-size: 30px;
+        color: white;
+    }
+}
+
+.cuadrilla-search {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    width: 100%;
+    color: white;
+    & h2 {
+        font-size: 30px;
+        color: white;
+    }
+}
+
+.cuadrilla-searchx5 {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    width: 100%;
+    color: white;
+    gap: 0.2%;
+    & h2 {
+        font-size: 30px;
+        color: white;
+    }
+}
+
+.cuadrilla-resultados {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    height: 100%;
+    align-content: center;
+    align-items: center;
+
+}
+
+.trago {
+    background-color: rgba(226, 148, 117, .5);
+    padding: 10px;
+    border-radius: 12px;
+    border: tomato;
+    border-width: 5px;
+    text-align: center;
+
+    & h3 {
+        color: white;
+    }
+    & img {
+        width: 80%;
+        border-radius: 8px;
+    }
+}
+
+
+.pantalla-carga {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6); /* Fondo semi-transparente */
+    z-index: 9999; /* Para que esté por encima de todo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .spinner {
+    border: 8px solid #f3f3f3; /* Gris claro */
+    border-top: 8px solid #3498db; /* Azul */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Animación de giro */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Para la seccion individual de cada bebida */
+  .titulo-bebida {
+    color: rgb(255, 255, 255);
+  }
+
+  .fondo-bebida {
+    position: absolute;
+    display: flex;
+    width: 80%;
+    z-index: -999;
+    opacity: 0.2;
+    top: 0;
+    height: 100vh;
+  }
+
+  .detalles-bebida {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 'imagen ingrediente instrucciones';
+    & h3 {
+        color: rgb(255, 255, 255);
+    }
+  }
+
+  .imagen-bebida {
+    grid-area: 'imagen';
+    height: 450px;
+  }
+
+  .ingr-bebida {
+    grid-area: 'ingrediente';
+    margin-right: 20%;
+    & div {
+        color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: space-between;
+    }
+    & img {
+        height: 50px;
+    }
+  }
+
+  .instr-bebida {
+    grid-area: 'instrucciones';
+    color: rgb(255, 255, 255);
+  }
+
+  .loader {
+    width: 80px;
+    height: 170px;
+    position: relative;
+  }
+  
+  .loader:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 3px 5px;
+    border-top: 1px solid #bbb6aa;
+    border-bottom: 4px solid #bbb6aa;
+    background: linear-gradient(#612329 0 0) bottom no-repeat content-box, 
+      #e4e0d7;
+    mix-blend-mode: darken;
+    animation: l1 3s infinite linear;
+  }
+  
+  .loader:before {
+    content: "";
+    position: absolute;
+    inset: -50px calc(50% - 2px) 12px;
+    background: #eb6b3e;
+    transform-origin: bottom;
+    transform: rotate(8deg);
+  }
+  
+  @keyframes l1 {
+    0% {
+      background-size: 100% 100%
+    }
+  
+    100% {
+      background-size: 100% 5%
+    }
+  }
