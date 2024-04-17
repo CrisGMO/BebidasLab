@@ -1,5 +1,5 @@
 {
     "rewrites" : [
-        {"source": "/cocktailcategory", "destination" : "/cocktailCategory.html"}
+        {"source": "/(.*)", "destination" : "/"}
     ]
 }
