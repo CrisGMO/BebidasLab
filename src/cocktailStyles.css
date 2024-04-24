@@ -8,57 +8,96 @@
 
 .cuadrilla-titulo {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    height: fit-content;
-    background-color: rgba(35, 24, 13, 0.7);
+    grid-template-columns: auto max-content max-content;
+    height: max-content;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     grid-template-areas:
-    "titulo titulo titulo home buscar";
+    "titulo buscar home";
+}
 
+.titulo {
+  grid-area: titulo;
+  display: inline;
 
-    & h1 {
-        grid-area: titulo;
-        display: flex;
-        align-items: center;
-        color: rgb(255, 159, 51);
-        margin: -10% 0;
-        padding-left: 5%;
-        font-size: 4vw;
-        font-family: "Bungee Spice", sans-serif;
-        & img {
-            height: 70px;
-        }
+  & h1 {
+    display: inline;
+    color: rgb(255, 159, 51);
+    margin: 0;
+    font-size: 4vw;
+    font-family: "Bungee Spice", sans-serif;    
+  }
+  & img {
+    margin-left: 2%;
+    height: 70px;
+  }
+  & a {
+    text-decoration: none;
+  }
+}
+
+.busqueda {
+  grid-area: buscar;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  & input {
+    font-family: "Outfit", sans-serif;
+    background-color: #eee;
+    border: none;
+    height: 2em;
+    border-radius: 8px;
+    color: black;
+  }
+  & input:focus {
+    outline-color: #eb6b3e;
+  }
+
+  & button {
+    margin: 0 3%;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    & img {
+        width: 2em;
+        height: 2em;
     }
-    /* boton de home */
-    & a {
-        margin: auto;
-        margin-right: 10px;
-        grid-area: home;
-        & button {
-            & img {
-                width: 2em;
-                height: 2em;
-                margin: auto;
-            }
-        }
+  }
+  & button:hover {
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 black;
+  }
+  & button:active {
+    background-color: #eb6b3e;
+  }
+}
+
+.portafolio {
+  grid-area: home;
+  display: flex;
+  margin: 0 3% 0 5%;
+  align-items: center;
+  
+  & button {
+    background-color: white;
+    color: black;
+    border-radius: 10em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid black;
+    box-shadow: 0 0 0 0 black;
+    & img {
+        align-items: end;
+        width: 4em;
+        height: 4em;
+        margin: 0;
     }
-    & div {
-        display: flex;
-        align-items: center;
-        grid-area: buscar;
-        & input {
-            background-color: lightblue;
-            border-color: steelblue;
-            border-radius: 8px;
-            height: 2em;
-        }
-        & button {
-            border-radius: 8px;
-            & img {
-                width: 2em;
-                height: 2em;
-            };
-        }
-    }
+  }
+  & button:hover {
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 black;
+  };
 }
 
 hr {
@@ -66,31 +105,36 @@ hr {
 }
 
 .cuadrilla-menus {
-    display: inline-block;
+    display: flex;
     width: 100%;
-    align-items: center;
     justify-content: center;
-    color: white;
+    font-family: "Outfit", sans-serif;
+    /* color: white; */
 
     & a {
         color: white;
         margin: 10px;
-        font-size: 20px;
+        font-size: 1.2vw;
+        text-decoration: none;
     }
 }
 
 .cuadrilla-recetas {
     width: 100%;
     color: white;
+    font-family: "Outfit", sans-serif;
     & h2 {
-        font-size: 30px;
+        font-size: 1.7vw;
         color: white;
     }
 }
 
 .cuadrilla-search {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    font-family: "Outfit", sans-serif;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
     width: 100%;
     color: white;
     & h2 {
@@ -101,24 +145,16 @@ hr {
 
 .cuadrilla-searchx5 {
     display: grid;
+    font-family: "Outfit", sans-serif;
     grid-template-columns: repeat(5,1fr);
     width: 100%;
     color: white;
-    gap: 0.2%;
+    /* gap: 0.2%; */
+    gap: 10px;
     & h2 {
         font-size: 30px;
         color: white;
     }
-}
-
-.cuadrilla-resultados {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 20px;
-    height: 100%;
-    align-content: center;
-    align-items: center;
 }
 
 .cuadrilla-randomInfinite {
@@ -259,3 +295,4 @@ hr {
       background-size: 100% 5%
     }
   }
+

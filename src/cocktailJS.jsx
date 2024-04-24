@@ -18,12 +18,40 @@ const cargaDisplay = document.getElementById('pantalla-carga');
 const parametros = new URLSearchParams(window.location.search);
 const paramId = parametros.get('id');
 const paramCat = parametros.get('cat');
-console.log(paramId, paramCat);
 // Variables
 var datos;
-var categorias;
-var receta;
 var cantRandom = paramId!=null ? 5 : 9;
+
+// Version de Search
+const urlSearchBebida = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="; //Parametro de Busqueda: s=bebida
+const filtro = document.getElementById('filtro');
+filtro.addEventListener('keyup', handleKeyDown);
+const botonBuscar = document.getElementById('buscar');
+const lupaBuscar = document.getElementById('lupa');
+botonBuscar.addEventListener('click', clickBuscar);
+
+function handleKeyDown(event) {
+  if (event.key=='Enter') {
+    buscar(filtro.value);
+  }
+}
+
+function clickBuscar() {
+  buscar(filtro.value);
+}
+
+async function buscar(terminoBusqueda) {
+  if (terminoBusqueda!="") {
+    const bebida = await fetch(urlSearchBebida+terminoBusqueda);
+    const json = await bebida.json();
+    document.getElementById('resultados').className = 'cuadrilla-searchx5';
+    rootResultados.render(
+      <StrictMode>
+        <Recetas recetas={json.drinks}></Recetas>
+      </StrictMode>
+    )
+  }
+}
 
 // Cargar JSON Categorias y Renderizar
 recibeJSON(urlCategorias, 1)
@@ -44,6 +72,12 @@ if (paramCat==null) {
   .then(data => {
     datos = reordenarArrayRandom(data);
     cargaDisplay.style.display = 'none';
+    if (paramId==null) {
+      document.getElementById('resultados').className = 'cuadrilla-search';
+    }
+    else{
+      document.getElementById('resultados').className = 'cuadrilla-randomInfinite';
+    }
     rootResultados.render(
       <StrictMode>
         <Recetas recetas={datos} />
@@ -56,8 +90,7 @@ if (paramCat==null) {
 }
 
 // Cargar JSON Receta y Renderizar
-if (paramId!=null) {
-  document.getElementById('resultados').className = 'cuadrilla-randomInfinite';
+if (paramId!=null && paramCat==null){
   recibeJSON(urlRecetaByID+paramId,1)
     .then (data => {
       let receta = data.drinks[0];
@@ -86,7 +119,7 @@ if (paramId!=null) {
     })
 }
 
-if (paramCat!=null) {
+if (paramCat!=null && paramId==null) {
   recibeJSON(urlFiltroCategorias+paramCat,1)
     .then (data => {
       cargaDisplay.style.display = 'none';

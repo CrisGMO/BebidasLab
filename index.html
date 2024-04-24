@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+
     <title>Cocktail Lab</title>
     <link rel="stylesheet" href="src/cocktailStyles.css">
     <script type="module" src="src/cocktailJS.jsx"></script>
@@ -11,27 +12,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
 </head>
 <body id="app" class="cuerpo">
 
     <div class="cuadrilla-titulo">
-        <h1>
+
+        <div class="titulo">
             <a href="/index.html">
                 <img src="https://img.icons8.com/emoji/96/cocktail-glass.png">
             </a>
-            <blockquote>Cocktail Lab!</blockquote>
-        </h1>
-        <a href="https://cristiancampos.online">
+            <a href="/index.html">
+                <h1>Cocktail Lab!</h1>
+            </a>
+        </div>
+
+        <div class="busqueda">
+            <input id="filtro" type="text" placeholder="Buscar...">
+            <button id="buscar"><img id="lupa" src="https://img.icons8.com/ios-filled/50/search--v2.png"></button>
+        </div>
+
+        <a class="portafolio" href="https://cristiancampos.online">
             <button>
-                <img src="src/iconCasa.png">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
+                    <path fill="#424242" d="M27,7h-6c-1.7,0-3,1.3-3,3v3h2v-3c0-0.6,0.4-1,1-1h6c0.6,0,1,0.4,1,1v3h2v-3C30,8.3,28.7,7,27,7z"></path><path fill="#E65100" d="M40,43H8c-2.2,0-4-1.8-4-4V15c0-2.2,1.8-4,4-4h32c2.2,0,4,1.8,4,4v24C44,41.2,42.2,43,40,43z"></path><path fill="#FF6E40" d="M40,28H8c-2.2,0-4-1.8-4-4v-9c0-2.2,1.8-4,4-4h32c2.2,0,4,1.8,4,4v9C44,26.2,42.2,28,40,28z"></path><path fill="#FFF3E0" d="M26,26h-4c-0.6,0-1-0.4-1-1v-2c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1v2C27,25.6,26.6,26,26,26z"></path>
+                    </svg>
             </button>
         </a>
-        <div>
-            <input type="text" value="Buscar...">
-            <button><img src="https://img.icons8.com/ios-filled/50/search--v2.png"></button>
-        </div>
     </div>
+
     <hr>
 
 
@@ -56,14 +66,14 @@
     </div>
 
 
-
     <div id="pantalla-carga" class="pantalla-carga">
             <div class="loader"></div>
         </div>
     </div>
-    
-
-
+  
+    <footer>
+        <a  href="https://icons8.com/icon/2sgbSsEs7PlR/maletín">Maletín</a> icon by <a href="https://icons8.com">Icons8</a>
+    </footer>
 </body>
 
 </html>
